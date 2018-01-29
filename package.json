@@ -1,0 +1,52 @@
+{
+  "name": "cjc-medical-marijuana",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo test",
+    "clean": "rm -r dist/*",
+    "buildJS": "browserify src/js/main.js -t [ babelify --presets [ es2015 ] ] | uglifyjs > dist/scripts.min.js",
+    "buildJS-dev": "browserify src/js/main.js -t [ babelify --presets [ es2015 ] ] > dist/scripts.min.js",
+    "buildCSS": "cat src/css/* | postcss -u autoprefixer | postcss -u cssnano -o dist/styles.min.css",
+    "buildHTML": "copyfiles -u -f src/*.html dist/;",
+    "copyData": "copyfiles -u -f src/data/*.* dist/data;",
+    "build": "npm run buildHTML; npm run buildCSS; npm run buildJS; npm run copyData;",
+    "watch": "nodemon -e js,css,html,php -w build,lib -x 'npm run build'",
+    "watchJS": "nodemon -e js,vue,json -w src -x 'npm run buildJS'",
+    "watchJS-dev": "nodemon -e js,vue,json -w src -x 'npm run buildJS-dev'",
+    "watchCSS": "nodemon -e css -w src -x 'npm run buildCSS'"
+  },
+  "author": "Andrew Briz",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "cross-env": "^5.1.0",
+    "csslint": "^1.0.2",
+    "cssnano": "^3.8.1",
+    "envify": "^4.1.0",
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
+    "express": "^4.16.2",
+    "nodemon": "^1.10.2",
+    "postcss-cli": "^2.5.2",
+    "stringify": "^5.1.0",
+    "uglify-js": "^2.7.3"
+  },
+  "dependencies": {
+    "leaflet": "^1.3.1",
+    "normalize.css": "^4.2.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  }
+}
