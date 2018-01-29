@@ -11,3 +11,6 @@ Thumbs.db
 node_modules
 initWatch.sh
 .env
+
+# Custom Stuff
+dist/*
