@@ -1,6 +1,10 @@
 import L from 'leaflet';
 import jsonLoad from './jsonLoad.js';
-import createElement from './createElement.js';
+
+// loading styles
+import 'normalize.css';
+import 'leaflet.css';
+import '../css/app.css';
 
 const app = {
     // constants
